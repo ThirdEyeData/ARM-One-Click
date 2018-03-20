@@ -19,12 +19,12 @@
     }
   },
   "variables": {
-    "storageName": "[concat(toLower(uniqueString(resourceGroup().id) , 'storage' )]",
-    "serverName":  "[concat(toLower(uniqueString(resourceGroup().id) , 'sqlserver' ]",
-    "clusterName": "[concat(toLower(uniqueString(resourceGroup().id) , 'cluster' ]",
+    "storageName": "[concat(toLower(uniqueString(resourceGroup().id).replaceAll('[0-9][-+.^:,]', '') , 'storage' )]",
+    "serverName":  "[concat(toLower(uniqueString(resourceGroup().id).replaceAll('[0-9][-+.^:,]', '') , 'sqlserver' ]",
+    "clusterName": "[concat(toLower(uniqueString(resourceGroup().id).replaceAll('[0-9][-+.^:,]', '') , 'cluster' ]",
     "clusterLoginUserName" : "admin",
     "sshUserName": "sshuser",
-    "ASserverName": "[concat(toLower(uniqueString(resourceGroup().id) , 'analysisserver' ]",
+    "ASserverName": "[concat(toLower(uniqueString(resourceGroup().id).replaceAll('[0-9][-+.^:,]', '') , 'analysisserver' ]",
     "ASskuName" : "B1",
     "ASskuTier" : "Basic"
   },  
