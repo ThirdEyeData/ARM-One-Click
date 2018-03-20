@@ -12,8 +12,8 @@
     }
   },
   "variables": {
-    "resourceGroupName" : "[toLower(resourceGroup().name)]",
-    "resourcePrefix" : "[replace(variables('resourceGroupName'),'-','')]",
+    "resourceGroupName" : "[resourceGroup().name]",
+    "resourcePrefix" : "[resourceGroup().name]",
     "storageName":  "[concat(variables('resourcePrefix'), 'blob' )]",
     "serverName":   "[concat(variables('resourcePrefix'), 'svr'  )]",
     "clusterName":  "[concat(variables('resourcePrefix'), 'spark')]",
