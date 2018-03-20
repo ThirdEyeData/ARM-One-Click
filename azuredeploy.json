@@ -13,7 +13,7 @@
   },
   "variables": {
     "resourceGroupName" : "[take(resourceGroup().name , 9)]",
-    "pattern":"'[-+.^:,]'",
+    "pattern":"[-+.^:,]",
     "resourcePrefix" : "[replace(variables('resourceGroupName'),variables('pattern'),'')]",
     "prefixLowercase" : "[toLower(variables('resourcePrefix'))]",
     "storageName":  "[concat(variables('prefixLowercase'), 'blob' )]",
