@@ -13,7 +13,7 @@
   },
   "variables": {
     "resourceGroupName" : "[resourceGroup().id]",
-    "resourcePrefix" : "[resourceGroupName.replace('[-+.^:,]', '')]",
+    "resourcePrefix" : "[resourceGroupName.replace('-', '')]",
     "storageName": "[concat(toLower(resourcePrefix, 'blob'))]",
     "serverName":  "[concat(toLower(resourcePrefix, 'svr' )) ]",
     "clusterName": "[concat(toLower(resourcePrefix, 'spark')) ]",
