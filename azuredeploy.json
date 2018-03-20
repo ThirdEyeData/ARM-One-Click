@@ -2,10 +2,6 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "storageAccounts_name": {
-      "type": "string",
-      "defaultValue": "kuharanstorage"
-    },
     "location": {
       "defaultValue": "west us 2",
       "type": "string"
@@ -17,49 +13,21 @@
     "password": {
         "type": "securestring"
     },
-    "serverName": {
-        "type": "string",
-        "defaultValue": "kuharantestserver"
-    },
-    "clusterName": {
-      "type": "string",
-      "defaultValue": "kuharancluster",
-      "metadata": {
-          "description": "The name of the HDInsight cluster to create."
-      }
-    },
-    "clusterLoginUserName": {
-        "defaultValue": "admin",
-        "type": "string",
-        "metadata": {
-            "description": "These credentials can be used to submit jobs to the cluster and to log into cluster dashboards."
-        }
-    },
-    "sshUserName": {
-        "defaultValue": "sshuser",
-        "type": "string",
-        "metadata": {
-            "description": "These credentials can be used to remotely access the cluster."
-        }
-    },
-    "ASserverName": {
-      "type": "string",
-      "defaultValue": "kuharananalysisserver"
-    },
     "ASAdmin": {
       "type": "string",
       "defaultValue": "thirdeyedata@outlook.com"
-    },
-    "ASskuName": {
-      "type": "string",
-      "defaultValue": "B1"
-    },
-    "ASskuTier": {
-      "type": "string",
-      "defaultValue": "Basic"
     }
   },
-  "variables": {},  
+  "variables": {
+    "storageName": "[concat(toLower(uniqueString(resourceGroup().id) , 'storage' )]",
+    "serverName":  "[concat(toLower(uniqueString(resourceGroup().id) , 'sqlserver' ]",
+    "clusterName": "[concat(toLower(uniqueString(resourceGroup().id) , 'cluster' ]",
+    "clusterLoginUserName" : "admin",
+    "sshUserName": "sshuser",
+    "ASserverName": "[concat(toLower(uniqueString(resourceGroup().id) , 'analysisserver' ]",
+    "ASskuName" : "B1",
+    "ASskuTier" : "Basic"
+  },  
   "resources": [
     {
       "type": "Microsoft.Storage/storageAccounts",
@@ -68,7 +36,7 @@
         "tier": "Standard"
       },
       "kind": "Storage",
-      "name": "[parameters('storageAccounts_name')]",
+      "name": "[variables('storageName')]",
       "apiVersion": "2017-10-01",
       "location": "[parameters('location')]",
       "tags": {},
@@ -97,7 +65,7 @@
     },
     {
       "type": "Microsoft.Sql/servers",
-      "name": "[parameters('serverName')]",
+      "name": "[variables('serverName')]",
       "apiVersion": "2014-04-01-preview",
       "location": "[parameters('location')]",
       "properties": {
@@ -136,7 +104,7 @@
     },
     {
       "type": "Microsoft.HDInsight/clusters",
-      "name": "[parameters('clusterName')]",
+      "name": "[variables('clusterName')]",
       "apiVersion": "2015-03-01-preview",
       "location": "[parameters('location')]",
       "properties": {
@@ -148,7 +116,7 @@
               "configurations": {
                   "gateway": {
                       "restAuthCredential.isEnabled": true,
-                      "restAuthCredential.username": "[parameters('clusterLoginUserName')]",
+                      "restAuthCredential.username": "[variables('clusterLoginUserName')]",
                       "restAuthCredential.password": "[parameters('password')]"
                   }
               }
@@ -174,7 +142,7 @@
                       },
                       "osProfile": {
                           "linuxOperatingSystemProfile": {
-                              "username": "[parameters('sshUserName')]",
+                              "username": "[variables('sshUserName')]",
                               "password": "[parameters('password')]"
                           }
                       },
@@ -204,12 +172,12 @@
     },
     {
       "type": "Microsoft.AnalysisServices/servers",
-      "name": "[parameters('ASserverName')]",
+      "name": "[variables('ASserverName')]",
       "apiVersion": "2016-05-16",
       "location": "[parameters('location')]",
       "sku": {
-        "name": "[parameters('ASskuName')]",
-        "tier": "[parameters('ASskuTier')]"
+        "name": "[variables('ASskuName')]",
+        "tier": "[variables('ASskuTier')]"
       },
       "tags": {},
       "properties": {
