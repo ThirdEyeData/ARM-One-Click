@@ -14,14 +14,14 @@
   "variables": {
     "resourceGroupName" : "[take(resourceGroup().name , 9)]",
     
-    "resourcePrefix" : "[replace(variables('resourceGroupName'),'-','')]",
-    "resourcePrefix" : "[replace(variables('resourceGroupName'),'+','')]",
-    "resourcePrefix" : "[replace(variables('resourceGroupName'),'.','')]", 
-    "resourcePrefix" : "[replace(variables('resourceGroupName'),'^','')]", 
-    "resourcePrefix" : "[replace(variables('resourceGroupName'),':','')]", 
-    "resourcePrefix" : "[replace(variables('resourceGroupName'),',','')]", 
+    "resourcePrefix1" : "[replace(variables('resourceGroupName'),'-','')]",
+    "resourcePrefix2" : "[replace(variables('resourcePrefix1'),'+','')]",
+    "resourcePrefix3" : "[replace(variables('resourcePrefix2'),'.','')]", 
+    "resourcePrefix4" : "[replace(variables('resourcePrefix3'),'^','')]", 
+    "resourcePrefix5" : "[replace(variables('resourcePrefix4'),':','')]", 
+    "resourcePrefix6" : "[replace(variables('resourcePrefix5'),',','')]", 
 
-    "prefixLowercase" : "[toLower(variables('resourcePrefix'))]",
+    "prefixLowercase" : "[toLower(variables('resourcePrefix6'))]",
     "storageName":  "[concat(variables('prefixLowercase'), 'blob' )]",
     "serverName":   "[concat(variables('prefixLowercase'), 'svr'  )]",
     "clusterName":  "[concat(variables('prefixLowercase'), 'spark')]",
