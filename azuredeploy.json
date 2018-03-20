@@ -19,9 +19,8 @@
     "resourcePrefix3" : "[replace(variables('resourcePrefix2'),'.','')]", 
     "resourcePrefix4" : "[replace(variables('resourcePrefix3'),'^','')]", 
     "resourcePrefix5" : "[replace(variables('resourcePrefix4'),':','')]", 
-    "resourcePrefix6" : "[replace(variables('resourcePrefix5'),',','')]", 
 
-    "prefixLowercase" : "[toLower(variables('resourcePrefix6'))]",
+    "prefixLowercase" : "[toLower(variables('resourcePrefix5'))]",
     "storageName":  "[concat(variables('prefixLowercase'), 'blob' )]",
     "serverName":   "[concat(variables('prefixLowercase'), 'svr'  )]",
     "clusterName":  "[concat(variables('prefixLowercase'), 'spark')]",
