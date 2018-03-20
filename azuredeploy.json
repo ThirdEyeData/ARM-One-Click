@@ -81,7 +81,7 @@
                   "collation": "SQL_Latin1_General_CP1_CI_AS"
               },
               "dependsOn": [
-                  "[concat('Microsoft.Sql/servers/', parameters('serverName'))]"
+                  "[concat('Microsoft.Sql/servers/', variables('serverName'))]"
               ]
           },
           {
@@ -94,7 +94,7 @@
                   "startIpAddress": "0.0.0.0"
               },
               "dependsOn": [
-                  "[concat('Microsoft.Sql/servers/', parameters('serverName'))]"
+                  "[concat('Microsoft.Sql/servers/', variables('serverName'))]"
               ]
           }
       ]
@@ -121,10 +121,10 @@
           "storageProfile": {
               "storageaccounts": [
                   {
-                      "name": "[concat(parameters('storageAccounts_name') , '.blob.core.windows.net')]",
+                      "name": "[concat(variables('storageName') , '.blob.core.windows.net')]",
                       "isDefault": true,
                       "container": "armhdinsight-2018-03-05t07-53-30-522z",
-                      "key": "[listKeys(parameters('storageAccounts_name') , '2015-05-01-preview').key1]"
+                      "key": "[listKeys(variables('storageName') , '2015-05-01-preview').key1]"
                   }
               ]
           },
@@ -155,7 +155,7 @@
                       },
                       "osProfile": {
                           "linuxOperatingSystemProfile": {
-                              "username": "[parameters('sshUserName')]",
+                              "username": "[variables('sshUserName')]",
                               "password": "[variables('password')]"
                           }
                       },
