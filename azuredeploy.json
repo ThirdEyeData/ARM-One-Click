@@ -12,12 +12,14 @@
     }
   },
   "variables": {
+    "openParantheses" : "(",
+    "closeParantheses" : ")",
     "resourceGroupName" : "[take(resourceGroup().name , 9)]",
     
     "resourcePrefix1" : "[replace(variables('resourceGroupName'),'-','')]",
-    "resourcePrefix2" : "[replace(variables('resourcePrefix1'),'(','')]",
+    "resourcePrefix2" : "[replace(variables('resourcePrefix1'),variables('openParantheses'),'')]",
     "resourcePrefix3" : "[replace(variables('resourcePrefix2'),'.','')]", 
-    "resourcePrefix4" : "[replace(variables('resourcePrefix3'),')','')]", 
+    "resourcePrefix4" : "[replace(variables('resourcePrefix3'),variables('closeParantheses'),'')]", 
     "resourcePrefix5" : "[replace(variables('resourcePrefix4'),'_','')]",    
 
     "prefixLowercase" : "[toLower(variables('resourcePrefix5'))]",
