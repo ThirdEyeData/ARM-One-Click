@@ -7,8 +7,7 @@
       "type": "string"
     },
     "ASAdmin": {
-      "type": "string",
-      "defaultValue": "thirdeyedata@outlook.com"
+      "type": "string"
     }
   },
   "variables": {
