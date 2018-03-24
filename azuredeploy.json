@@ -17,7 +17,7 @@
     "resourceGroupLen":"[length(resourceGroup().name)]",
     "charToTakeFromEnd":"4",
     "resourceGroupNamePart1" : "[take(resourceGroup().name , 5)]",
-    "resourceGroupNamePart2" : "[skip(resourceGroup().name, [sub(variables('resourceGroupLen')-variables('charToTakeFromEnd'))])]",
+    "resourceGroupNamePart2" : "[skip(resourceGroup().name, sub(variables('resourceGroupLen')-variables('charToTakeFromEnd')))]",
     "resourceGroupName":"[concat(variables('resourceGroupNamePart1'),variables('resourceGroupNamePart2'))]",
 
     "resourcePrefix1" : "[replace(variables('resourceGroupName'),'-','')]",
